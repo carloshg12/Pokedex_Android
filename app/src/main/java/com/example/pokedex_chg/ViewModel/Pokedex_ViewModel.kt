@@ -35,7 +35,7 @@ class Pokedex_ViewModel(application: Application, private val pokemonParser: Pok
     var primaryColor by mutableStateOf(Color.Gray)
 
     fun loadPokemonData(){//inputStream: InputStream) {
-        val pokemonSearchedName = "bulbasaur"
+        val pokemonSearchedName = "charizard"
         viewModelScope.launch {
             try {
                 val pokemon = pokemonParser.getPokemonByName(pokemonSearchedName)
