@@ -25,16 +25,30 @@ import java.io.InputStreamReader
 class Pokedex_ViewModel(application: Application, private val pokemonParser: PokemonApi = PokemonApi()
 ) : AndroidViewModel(application) {
 
-    init {
+    /*init {
         loadPokemonData()
-    }
+    }*/
 
     private val _pokemon = MutableLiveData<Pokemon?>(null)
     val pokemon: LiveData<Pokemon?> = _pokemon
 
     var primaryColor by mutableStateOf(Color.Gray)
 
-    fun loadPokemonData(){//inputStream: InputStream) {
+    fun getPokemonDetails(id: Int) {
+        viewModelScope.launch {
+            try {
+                val pokemon = pokemonParser.getPokemonById(id)
+                _pokemon.postValue(pokemon)
+            } catch (e: Exception) {
+                // Manejar el error
+            }
+        }
+    }
+
+    /*
+    Funcion si se busca un pokemon por nombre
+     */
+    /*fun loadPokemonData(){//inputStream: InputStream) {
         val pokemonSearchedName = "charizard"
         viewModelScope.launch {
             try {
@@ -60,7 +74,7 @@ class Pokedex_ViewModel(application: Application, private val pokemonParser: Pok
                 throw RuntimeException("Error parsing JSON: ${e.message}")
             }
         }
-    }
+    }*/
 
     fun getAbilityColor(ability: String): Color {
         return try {

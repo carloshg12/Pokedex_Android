@@ -40,6 +40,32 @@ class PokemonApi : PokemonRepository {
         }
     }
 
+    override suspend fun getPokemonById(id: Int): Pokemon {
+        return withContext(Dispatchers.IO) {
+            val url = URL("https://pokeapi.co/api/v2/pokemon/$id")
+            val connection = url.openConnection() as HttpURLConnection
+
+            try {
+                connection.requestMethod = "GET"
+                connection.connect()
+
+                if (connection.responseCode != HttpURLConnection.HTTP_OK) {
+                    throw RuntimeException("HTTP error code: ${connection.responseCode}")
+                }
+
+                val inputStream = connection.inputStream
+                val jsonString = inputStream.bufferedReader().use { it.readText() }
+                val gson = Gson()
+
+                val gsonPokemon = gson.fromJson(jsonString, Pokemon_Serializable::class.java)
+
+                transformToPokemonModel(gsonPokemon)
+            } finally {
+                connection.disconnect()
+            }
+        }
+    }
+
     private fun transformToPokemonModel(gsonPokemon: Pokemon_Serializable): Pokemon {
         val id = gsonPokemon.id.padStart(3, '0')
         val name = gsonPokemon.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }

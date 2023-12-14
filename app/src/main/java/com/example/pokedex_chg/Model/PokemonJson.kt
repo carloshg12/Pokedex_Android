@@ -73,4 +73,8 @@ class PokemonJson : PokemonRepository {
     override suspend fun getPokemonByName(name: String): Pokemon {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getPokemonById(id: Int): Pokemon {
+        TODO("Not yet implemented")
+    }
 }
