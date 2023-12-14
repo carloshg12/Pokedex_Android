@@ -52,7 +52,6 @@ class Pokedex_View {
     @Composable
     fun PokemonDetailScreen(pokedexViewModel: Pokedex_ViewModel = viewModel()) {
 
-
         /*
             * Si queremos leer mediante GSON un archivo json descomentamos estas lineas
             * y cambiamos en el constructor el parser
