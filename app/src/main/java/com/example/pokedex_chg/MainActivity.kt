@@ -74,6 +74,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 fun PokemonListScreen(viewModel: PokemonViewModel, navController: NavController) {
     val pokemons by viewModel.pokemons.observeAsState(initial = emptyList())
