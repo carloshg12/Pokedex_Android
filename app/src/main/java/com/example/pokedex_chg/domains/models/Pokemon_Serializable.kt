@@ -1,4 +1,4 @@
-package com.example.pokedex_chg.Model
+package com.example.pokedex_chg.domains.models
 import com.google.gson.annotations.SerializedName
 
 data class Pokemon_Serializable(

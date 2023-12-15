@@ -1,9 +1,10 @@
-package com.example.pokedex_chg.Model
+package com.example.pokedex_chg.data.sources.local
 
+import com.example.pokedex_chg.domains.models.Pokemon
+import com.example.pokedex_chg.domains.models.Pokemon_Serializable
+import com.example.pokedex_chg.domains.repositories.PokemonRepository
 import com.google.gson.Gson
 import org.json.simple.JSONObject
-import java.io.InputStream
-import java.io.InputStreamReader
 
 
 class PokemonGson : PokemonRepository {
