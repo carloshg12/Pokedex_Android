@@ -56,22 +56,17 @@ class MainActivity : ComponentActivity() {
 
                         composable("Lista") {
 
-                            PokemonListScreen(viewModel,navController)
-                        }
-                        composable("PokedexView") {
-
-                            Pokedex_View().PokemonDetailScreen(pokedexViewModel = Pokedex_ViewModel(application))
+                            PokemonListScreen(viewModel, navController)
                         }
                         composable("PokedexView/{pokemonId}") { backStackEntry ->
                             val pokemonId = backStackEntry.arguments?.getString("pokemonId")
                             Pokedex_View().PokemonDetailScreen(
                                 pokedexViewModel = Pokedex_ViewModel(application).apply {
                                     getPokemonDetails(pokemonId?.toInt() ?: 0)
-                                }
+                                },
+                                navController = navController // Pasa el NavController aquí
                             )
                         }
-
-
                     }
                 }
             }
@@ -80,7 +75,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun PokemonListScreen(viewModel: PokemonViewModel, navController:NavController) {
+fun PokemonListScreen(viewModel: PokemonViewModel, navController: NavController) {
     val pokemons by viewModel.pokemons.observeAsState(initial = emptyList())
 
     LazyColumn {

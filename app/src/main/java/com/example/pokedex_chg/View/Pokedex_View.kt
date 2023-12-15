@@ -52,7 +52,10 @@ class Pokedex_View {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun PokemonDetailScreen(pokedexViewModel: Pokedex_ViewModel = viewModel()) {
+    fun PokemonDetailScreen(
+        pokedexViewModel: Pokedex_ViewModel = viewModel(),
+        navController: NavController
+    ) {
 
         /*
             * Si queremos leer mediante GSON un archivo json descomentamos estas lineas
@@ -72,7 +75,7 @@ class Pokedex_View {
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            topBar = { TopBar(number, color) }) {
+            topBar = { TopBar(number, color, navController) }) {
 
             Column(
                 modifier = Modifier
@@ -265,8 +268,7 @@ class Pokedex_View {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun TopBar(number: String?, color: Color) {
-
+    fun TopBar(number: String?, color: Color, navController: NavController) {
         TopAppBar(
             colors = TopAppBarDefaults.smallTopAppBarColors(color),
             title = {
@@ -275,14 +277,13 @@ class Pokedex_View {
                 )
             },
             navigationIcon = {
-                IconButton(onClick = { }) {
+                IconButton(onClick = { navController.popBackStack() }) {
                     Icon(
-                        imageVector = Icons.Filled.ArrowBack, contentDescription = "Atras",
+                        imageVector = Icons.Filled.ArrowBack, contentDescription = "Atrás",
                         tint = Color.White
                     )
                 }
             },
-
             actions = {
                 Text(
                     text = "#${number ?: "Loading..."}", color = Color.White
@@ -290,41 +291,41 @@ class Pokedex_View {
             }
         )
     }
-}
 
 
-@Composable
-fun StatisticBar(value: Int, maxValue: Int, color: Color) {
-    val percentage = (value / maxValue.toFloat()).coerceIn(0f, 1f)
+    @Composable
+    fun StatisticBar(value: Int, maxValue: Int, color: Color) {
+        val percentage = (value / maxValue.toFloat()).coerceIn(0f, 1f)
 
-    Column(
-        modifier = Modifier
-            .padding(start = 20.dp, top = 15.dp, end = 20.dp)
-    ) {
-
-        Box(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(20.dp)
-                .background(Color.Gray, shape = RoundedCornerShape(10.dp))
+                .padding(start = 20.dp, top = 15.dp, end = 20.dp)
         ) {
 
             Box(
                 modifier = Modifier
-                    .fillMaxWidth(percentage)
+                    .fillMaxWidth()
                     .height(20.dp)
-                    .background(color, shape = RoundedCornerShape(10.dp))
-            )
+                    .background(Color.Gray, shape = RoundedCornerShape(10.dp))
+            ) {
 
-            Text(
-                text = "$value/$maxValue",
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp,
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .padding(start = 4.dp)
-            )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(percentage)
+                        .height(20.dp)
+                        .background(color, shape = RoundedCornerShape(10.dp))
+                )
+
+                Text(
+                    text = "$value/$maxValue",
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .padding(start = 4.dp)
+                )
+            }
         }
     }
 }
