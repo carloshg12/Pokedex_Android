@@ -30,10 +30,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-import com.example.pokedex_chg.ui.viewModels.PokemonViewModel
-import com.example.pokedex_chg.data.models.Pokemon_Reduced
+import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
+import com.example.pokedex_chg.data.models.ReducedPokemonData
 import com.example.pokedex_chg.ui.screens.Pokedex_View
-import com.example.pokedex_chg.ui.viewModels.Pokedex_ViewModel
+import com.example.pokedex_chg.ui.viewModels.PokemonListViewModel
 import com.example.pokedex_chg.ui.theme.Pokedex_CHGTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
             Pokedex_CHGTheme {
                 val navController = rememberNavController()
 
-                val viewModel: PokemonViewModel = viewModel()
+                val viewModel: PokemonDetailViewModel = viewModel()
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
                         composable("PokedexView/{pokemonId}") { backStackEntry ->
                             val pokemonId = backStackEntry.arguments?.getString("pokemonId")
                             Pokedex_View().PokemonDetailScreen(
-                                pokedexViewModel = Pokedex_ViewModel(application).apply {
+                                pokedexViewModel = PokemonListViewModel(application).apply {
                                     getPokemonDetails(pokemonId?.toInt() ?: 0)
                                 },
                                 navController = navController // Pasa el NavController aquí
@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun PokemonListScreen(viewModel: PokemonViewModel, navController: NavController) {
+fun PokemonListScreen(viewModel: PokemonDetailViewModel, navController: NavController) {
     val pokemons by viewModel.pokemons.observeAsState(initial = emptyList())
 
     LazyColumn {
@@ -89,7 +89,7 @@ fun PokemonListScreen(viewModel: PokemonViewModel, navController: NavController)
 }
 
 @Composable
-fun PokemonRow(pokemon: Pokemon_Reduced, onPokemonClick: (String) -> Unit) {
+fun PokemonRow(pokemon: ReducedPokemonData, onPokemonClick: (String) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()

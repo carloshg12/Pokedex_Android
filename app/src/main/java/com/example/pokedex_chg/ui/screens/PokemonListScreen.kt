@@ -33,7 +33,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.example.pokedex_chg.ui.viewModels.Pokedex_ViewModel
+import com.example.pokedex_chg.ui.viewModels.PokemonListViewModel
 import com.example.pokedex_chg.ui.theme.ATKColor
 import com.example.pokedex_chg.ui.theme.DFNColor
 import com.example.pokedex_chg.ui.theme.EXPColor
@@ -51,7 +51,7 @@ class Pokedex_View {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun PokemonDetailScreen(
-        pokedexViewModel: Pokedex_ViewModel = viewModel(),
+        pokedexViewModel: PokemonListViewModel = viewModel(),
         navController: NavController
     ) {
 
