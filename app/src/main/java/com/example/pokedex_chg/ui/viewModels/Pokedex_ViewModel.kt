@@ -1,4 +1,4 @@
-package com.example.pokedex_chg.ViewModel
+package com.example.pokedex_chg.ui.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -9,19 +9,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewModelScope
-import com.example.pokedex_chg.Lista.Pokemon_Reduced
-import com.example.pokedex_chg.Model.Pokemon
-import com.example.pokedex_chg.Model.PokemonApi
-import com.example.pokedex_chg.Model.PokemonGson
-import com.example.pokedex_chg.Model.PokemonJson
-import com.example.pokedex_chg.View.Enum_Colors
-import kotlinx.coroutines.Dispatchers
+import com.example.pokedex_chg.domains.models.Pokemon
+import com.example.pokedex_chg.data.sources.remote.PokemonApi
+import com.example.pokedex_chg.domains.models.Enum_Colors
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import org.json.simple.JSONObject
-import org.json.simple.parser.JSONParser
-import java.io.InputStream
-import java.io.InputStreamReader
 
 class Pokedex_ViewModel(application: Application, private val pokemonParser: PokemonApi = PokemonApi()
 ) : AndroidViewModel(application) {

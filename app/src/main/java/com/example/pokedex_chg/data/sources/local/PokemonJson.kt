@@ -1,8 +1,9 @@
-package com.example.pokedex_chg.Model
+package com.example.pokedex_chg.data.sources.local
 
+import com.example.pokedex_chg.domains.models.Pokemon
+import com.example.pokedex_chg.domains.repositories.PokemonRepository
 import org.json.simple.JSONArray
 import org.json.simple.JSONObject
-import java.io.InputStream
 
 class PokemonJson : PokemonRepository {
 

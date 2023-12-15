@@ -1,6 +1,6 @@
 package com.example.pokedex_chg.Dentro
 
-import com.example.pokedex_chg.Model.Pokemon_Serializable
+import com.example.pokedex_chg.domains.models.Pokemon_Serializable
 import retrofit2.http.GET
 import retrofit2.http.Path
 

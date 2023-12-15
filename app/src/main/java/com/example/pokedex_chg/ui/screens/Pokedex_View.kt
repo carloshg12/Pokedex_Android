@@ -1,7 +1,6 @@
-package com.example.pokedex_chg.View
+package com.example.pokedex_chg.ui.screens
 
 import android.annotation.SuppressLint
-import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -31,11 +30,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.example.pokedex_chg.ViewModel.Pokedex_ViewModel
+import com.example.pokedex_chg.ui.viewModels.Pokedex_ViewModel
 import com.example.pokedex_chg.ui.theme.ATKColor
 import com.example.pokedex_chg.ui.theme.DFNColor
 import com.example.pokedex_chg.ui.theme.EXPColor
