@@ -30,6 +30,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -264,6 +266,7 @@ class Pokedex_View {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun TopBar(number: String?, color: Color) {
+
         TopAppBar(
             colors = TopAppBarDefaults.smallTopAppBarColors(color),
             title = {
@@ -272,7 +275,7 @@ class Pokedex_View {
                 )
             },
             navigationIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { }) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack, contentDescription = "Atras",
                         tint = Color.White

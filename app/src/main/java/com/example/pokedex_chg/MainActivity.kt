@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -55,12 +56,22 @@ class MainActivity : ComponentActivity() {
 
                         composable("Lista") {
 
-                            PokemonListScreen(viewModel)
+                            PokemonListScreen(viewModel,navController)
                         }
                         composable("PokedexView") {
 
                             Pokedex_View().PokemonDetailScreen(pokedexViewModel = Pokedex_ViewModel(application))
                         }
+                        composable("PokedexView/{pokemonId}") { backStackEntry ->
+                            val pokemonId = backStackEntry.arguments?.getString("pokemonId")
+                            Pokedex_View().PokemonDetailScreen(
+                                pokedexViewModel = Pokedex_ViewModel(application).apply {
+                                    getPokemonDetails(pokemonId?.toInt() ?: 0)
+                                }
+                            )
+                        }
+
+
                     }
                 }
             }
@@ -69,12 +80,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun PokemonListScreen(viewModel: PokemonViewModel) {
+fun PokemonListScreen(viewModel: PokemonViewModel, navController:NavController) {
     val pokemons by viewModel.pokemons.observeAsState(initial = emptyList())
 
     LazyColumn {
         items(pokemons) { pokemon ->
             PokemonRow(pokemon) { pokemonId ->
+                navController.navigate("PokedexView/$pokemonId")
             }
         }
     }
@@ -124,20 +136,3 @@ fun PokemonRow(pokemon: Pokemon_Reduced, onPokemonClick: (String) -> Unit) {
         }
     }
 }
-
-
-/*
-
-       Numero -> 460
-       Foto -> 729
-       Nombre -> 716
-       Habilidades -> 953 - 954
-       Peso ->959
-       Altura -> 169
-       HP -> 902
-       ATCK -> 910
-       DFN -> 918
-       SPD -> 942
-       EXP -> 20
-
- */
