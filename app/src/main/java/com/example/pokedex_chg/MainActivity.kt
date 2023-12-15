@@ -30,8 +30,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-import com.example.pokedex_chg.Lista.PokemonViewModel
-import com.example.pokedex_chg.Lista.Pokemon_Reduced
+import com.example.pokedex_chg.ui.viewModels.PokemonViewModel
+import com.example.pokedex_chg.data.models.Pokemon_Reduced
 import com.example.pokedex_chg.ui.screens.Pokedex_View
 import com.example.pokedex_chg.ui.viewModels.Pokedex_ViewModel
 import com.example.pokedex_chg.ui.theme.Pokedex_CHGTheme

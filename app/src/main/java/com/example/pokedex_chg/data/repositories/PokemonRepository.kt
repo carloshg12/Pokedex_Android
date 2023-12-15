@@ -1,5 +1,7 @@
-package com.example.pokedex_chg.Lista
+package com.example.pokedex_chg.data.repositories
 
+import com.example.pokedex_chg.data.models.Pokemon_Reduced
+import com.example.pokedex_chg.data.sources.remote.RetrofitInstance
 import java.util.Locale
 
 interface PokemonRepository {
