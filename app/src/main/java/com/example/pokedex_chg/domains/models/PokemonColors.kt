@@ -22,7 +22,7 @@ import com.example.pokedex_chg.ui.theme.steel
 import com.example.pokedex_chg.ui.theme.unknown
 import com.example.pokedex_chg.ui.theme.water
 
-enum class Enum_Colors (val color: Color){
+enum class PokemonColors (val color: Color){
 
     NORMAL(normal),
     FIGHTING(fighting),

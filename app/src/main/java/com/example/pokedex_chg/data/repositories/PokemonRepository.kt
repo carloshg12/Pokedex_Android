@@ -1,24 +1,24 @@
 package com.example.pokedex_chg.data.repositories
 
-import com.example.pokedex_chg.data.models.Pokemon_Reduced
+import com.example.pokedex_chg.data.models.ReducedPokemonData
 import com.example.pokedex_chg.data.sources.remote.RetrofitInstance
 import java.util.Locale
 
 interface PokemonRepository {
-    suspend fun getAllPokemons(): List<Pokemon_Reduced>
+    suspend fun getAllPokemons(): List<ReducedPokemonData>
 }
 
 class PokemonRepositoryImpl : PokemonRepository {
     private val apiService = RetrofitInstance.api
 
-    override suspend fun getAllPokemons(): List<Pokemon_Reduced> {
+    override suspend fun getAllPokemons(): List<ReducedPokemonData> {
         val response = apiService.getAllPokemons()
         return response.pokemon_entries.map { entry ->
             val pokemonId = entry.entry_number.toString()
             val pokemonName = entry.pokemon_species.name.capitalize(Locale.getDefault())
             val pokemonPhotoUrl = getPokemonPhotoUrl(entry.entry_number)
 
-            Pokemon_Reduced(pokemonId, pokemonName, pokemonPhotoUrl)
+            ReducedPokemonData(pokemonId, pokemonName, pokemonPhotoUrl)
         }
     }
 

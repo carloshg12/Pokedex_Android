@@ -11,10 +11,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.data.sources.remote.PokemonApi
-import com.example.pokedex_chg.domains.models.Enum_Colors
+import com.example.pokedex_chg.domains.models.PokemonColors
 import kotlinx.coroutines.launch
 
-class Pokedex_ViewModel(application: Application, private val pokemonParser: PokemonApi = PokemonApi()
+class PokemonListViewModel(application: Application, private val pokemonParser: PokemonApi = PokemonApi()
 ) : AndroidViewModel(application) {
 
     private val _pokemon = MutableLiveData<Pokemon?>(null)
@@ -66,7 +66,7 @@ class Pokedex_ViewModel(application: Application, private val pokemonParser: Pok
 
     fun getAbilityColor(ability: String): Color {
         return try {
-            val enumColor = Enum_Colors.valueOf(ability.uppercase())
+            val enumColor = PokemonColors.valueOf(ability.uppercase())
             if (primaryColor == Color.Gray) {
                 primaryColor = enumColor.color
             }
