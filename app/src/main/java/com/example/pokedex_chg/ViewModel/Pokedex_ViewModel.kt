@@ -29,10 +29,6 @@ class Pokedex_ViewModel(application: Application, private val pokemonParser: Pok
     private val _pokemon = MutableLiveData<Pokemon?>(null)
     val pokemon: LiveData<Pokemon?> = _pokemon
 
-    /*init {
-        loadPokemonData()
-    }*/
-
     var primaryColor by mutableStateOf(Color.Gray)
 
     fun getPokemonDetails(id: Int) {
