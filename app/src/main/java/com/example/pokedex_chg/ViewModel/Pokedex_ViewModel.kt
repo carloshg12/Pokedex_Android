@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewModelScope
+import com.example.pokedex_chg.Lista.Pokemon_Reduced
 import com.example.pokedex_chg.Model.Pokemon
 import com.example.pokedex_chg.Model.PokemonApi
 import com.example.pokedex_chg.Model.PokemonGson
@@ -25,12 +26,12 @@ import java.io.InputStreamReader
 class Pokedex_ViewModel(application: Application, private val pokemonParser: PokemonApi = PokemonApi()
 ) : AndroidViewModel(application) {
 
+    private val _pokemon = MutableLiveData<Pokemon?>(null)
+    val pokemon: LiveData<Pokemon?> = _pokemon
+
     /*init {
         loadPokemonData()
     }*/
-
-    private val _pokemon = MutableLiveData<Pokemon?>(null)
-    val pokemon: LiveData<Pokemon?> = _pokemon
 
     var primaryColor by mutableStateOf(Color.Gray)
 
