@@ -1,4 +1,4 @@
-package com.example.pokedex_chg.Lista
+package com.example.pokedex_chg.data.sources.remote
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
