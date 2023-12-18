@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
                                 pokedexViewModel = PokemonListViewModel(application).apply {
                                     getPokemonDetails(pokemonId?.toInt() ?: 0)
                                 },
-                                navController = navController // Pasa el NavController aquí
+                                navController = navController
                             )
                         }
                     }

@@ -51,7 +51,7 @@ class Pokedex_View {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun PokemonDetailScreen(
-        pokedexViewModel: PokemonListViewModel = viewModel(),
+        pokedexViewModel: PokemonListViewModel,
         navController: NavController
     ) {
 
