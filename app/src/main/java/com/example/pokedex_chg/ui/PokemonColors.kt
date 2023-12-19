@@ -1,4 +1,4 @@
-package com.example.pokedex_chg.domains.models
+package com.example.pokedex_chg.ui
 
 import androidx.compose.ui.graphics.Color
 import com.example.pokedex_chg.ui.theme.bug

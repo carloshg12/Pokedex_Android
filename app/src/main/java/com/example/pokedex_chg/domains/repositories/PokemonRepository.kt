@@ -9,7 +9,4 @@ interface PokemonRepository {
 
     suspend fun getPokemonById(id: Int) : Pokemon
 
-
-
-
 }

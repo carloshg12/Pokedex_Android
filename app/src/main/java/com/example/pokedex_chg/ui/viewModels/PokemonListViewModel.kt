@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.data.sources.remote.PokemonApi
-import com.example.pokedex_chg.domains.models.PokemonColors
+import com.example.pokedex_chg.ui.PokemonColors
 import kotlinx.coroutines.launch
 
 class PokemonListViewModel(application: Application, private val pokemonParser: PokemonApi = PokemonApi()
