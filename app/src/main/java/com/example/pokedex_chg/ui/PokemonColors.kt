@@ -46,6 +46,5 @@ enum class PokemonColors (val color: Color){
     LOADING(Color.Gray),
     SHADOW(shadow);
 
-
 }
 
