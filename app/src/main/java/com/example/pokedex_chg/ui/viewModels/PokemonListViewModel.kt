@@ -8,14 +8,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.data.sources.remote.PokemonApi
 import com.example.pokedex_chg.ui.PokemonColors
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PokemonListViewModel(application: Application, private val pokemonParser: PokemonApi = PokemonApi()
-) : AndroidViewModel(application) {
+class PokemonListViewModel @Inject constructor(private val pokemonParser: PokemonApi = PokemonApi()
+) : ViewModel() {
 
     private val _pokemon = MutableLiveData<Pokemon?>(null)
     val pokemon: LiveData<Pokemon?> = _pokemon
@@ -23,15 +25,21 @@ class PokemonListViewModel(application: Application, private val pokemonParser: 
     var primaryColor by mutableStateOf(Color.Gray)
 
     fun getPokemonDetails(id: Int) {
-        viewModelScope.launch {
-            try {
-                val pokemon = pokemonParser.getPokemonById(id)
-                _pokemon.postValue(pokemon)
-            } catch (e: Exception) {
-                // Manejar el error
+        if (_pokemon.value?.number != id.toString()) {
+            viewModelScope.launch {
+                try {
+                    val pokemon = pokemonParser.getPokemonById(id)
+                    _pokemon.postValue(pokemon)
+                    // Suponiendo que quieres usar la primera habilidad para determinar el color
+                    primaryColor = getAbilityColor(pokemon.abilities.firstOrNull() ?: "")
+                } catch (e: Exception) {
+                    // Manejar el error
+                }
             }
         }
     }
+
+
 
     /*
     Funcion si se busca un pokemon por nombre

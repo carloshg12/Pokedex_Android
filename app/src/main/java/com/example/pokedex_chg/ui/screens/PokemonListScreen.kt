@@ -45,7 +45,6 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 val PokemonName = "charizard"
 
-class Pokedex_View {
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
@@ -326,4 +325,3 @@ class Pokedex_View {
             }
         }
     }
-}

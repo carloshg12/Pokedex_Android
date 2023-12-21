@@ -32,10 +32,12 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
 import com.example.pokedex_chg.data.models.ReducedPokemonData
-import com.example.pokedex_chg.ui.screens.Pokedex_View
+import com.example.pokedex_chg.ui.screens.PokemonDetailScreen
 import com.example.pokedex_chg.ui.viewModels.PokemonListViewModel
 import com.example.pokedex_chg.ui.theme.Pokedex_CHGTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
 
                 val viewModel: PokemonDetailViewModel = viewModel()
+                val viewModel2: PokemonListViewModel = viewModel()
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -55,17 +58,16 @@ class MainActivity : ComponentActivity() {
                     ) {
 
                         composable("Lista") {
-
                             PokemonListScreen(viewModel, navController)
                         }
                         composable("PokedexView/{pokemonId}") { backStackEntry ->
                             val pokemonId = backStackEntry.arguments?.getString("pokemonId")
-                            Pokedex_View().PokemonDetailScreen(
-                                pokedexViewModel = PokemonListViewModel(application).apply {
-                                    getPokemonDetails(pokemonId?.toInt() ?: 0)
-                                },
+                            PokemonDetailScreen(
+                                pokedexViewModel = viewModel2,
                                 navController = navController
-                            )
+                            ).apply {
+                                viewModel2.getPokemonDetails(pokemonId?.toInt() ?: 0)
+                            }
                         }
                     }
                 }
