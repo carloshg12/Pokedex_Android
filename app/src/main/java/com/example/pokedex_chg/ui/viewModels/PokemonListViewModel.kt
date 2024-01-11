@@ -1,7 +1,6 @@
 package com.example.pokedex_chg.ui.viewModels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.data.sources.remote.PokemonApi
-import com.example.pokedex_chg.ui.PokemonColors
+import com.example.pokedex_chg.ui.utils.PokemonColors
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,10 +29,9 @@ class PokemonListViewModel @Inject constructor(private val pokemonParser: Pokemo
                 try {
                     val pokemon = pokemonParser.getPokemonById(id)
                     _pokemon.postValue(pokemon)
-                    // Suponiendo que quieres usar la primera habilidad para determinar el color
                     primaryColor = getAbilityColor(pokemon.abilities.firstOrNull() ?: "")
                 } catch (e: Exception) {
-                    // Manejar el error
+                    Log.d("Error","No se han encontrado pokemons :(")
                 }
             }
         }
