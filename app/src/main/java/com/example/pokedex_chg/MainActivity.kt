@@ -22,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -35,6 +36,7 @@ import com.example.pokedex_chg.data.models.ReducedPokemonData
 import com.example.pokedex_chg.ui.screens.PokemonDetailScreen
 import com.example.pokedex_chg.ui.viewModels.PokemonListViewModel
 import com.example.pokedex_chg.ui.theme.Pokedex_CHGTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -79,6 +81,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun PokemonListScreen(viewModel: PokemonDetailViewModel, navController: NavController) {
+    val color = MaterialTheme.colorScheme.primary
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(color)
+
     val pokemons by viewModel.pokemons.observeAsState(initial = emptyList())
 
     LazyColumn {
