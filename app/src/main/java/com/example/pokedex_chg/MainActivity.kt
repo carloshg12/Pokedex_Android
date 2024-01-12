@@ -1,8 +1,10 @@
 package com.example.pokedex_chg
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -34,6 +36,7 @@ import coil.compose.AsyncImage
 import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
 import com.example.pokedex_chg.data.models.ReducedPokemonData
 import com.example.pokedex_chg.ui.screens.PokemonDetailScreen
+import com.example.pokedex_chg.ui.screens.SplashScreen
 import com.example.pokedex_chg.ui.viewModels.PokemonListViewModel
 import com.example.pokedex_chg.ui.theme.Pokedex_CHGTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -41,6 +44,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -56,11 +60,14 @@ class MainActivity : ComponentActivity() {
                 ) {
                     NavHost(
                         navController = navController,
-                        startDestination = "Lista"
+                        startDestination = "Splash"
                     ) {
 
                         composable("Lista") {
                             PokemonListScreen(viewModel, navController)
+                        }
+                        composable("Splash") {
+                            SplashScreen(navController) {}
                         }
                         composable("PokedexView/{pokemonId}") { backStackEntry ->
                             val pokemonId = backStackEntry.arguments?.getString("pokemonId")

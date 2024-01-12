@@ -92,7 +92,7 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
     implementation ("io.coil-kt:coil-compose:2.5.0")
 
-    val hiltVersion = "2.48.1" // Asegúrate de que esta es la versión correcta
+    val hiltVersion = "2.48.1"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     ksp("com.google.dagger:hilt-compiler:$hiltVersion")
 
