@@ -11,7 +11,11 @@ class PokemonRepositoryImpl : PokemonRepository {
         val response = apiService.getAllPokemons()
         return response.pokemon_entries.map { entry ->
             val pokemonId = entry.entry_number.toString()
-            val pokemonName = entry.pokemon_species.name.capitalize(Locale.getDefault())
+            val pokemonName = entry.pokemon_species.name.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
             val pokemonPhotoUrl = getPokemonPhotoUrl(entry.entry_number)
 
             ReducedPokemonData(pokemonId, pokemonName, pokemonPhotoUrl)
@@ -19,7 +23,6 @@ class PokemonRepositoryImpl : PokemonRepository {
     }
 
     private fun getPokemonPhotoUrl(id: Int): String {
-        // Asume una URL de imagen específica o modifícala según la API
         return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
     }
 }
