@@ -29,7 +29,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             Pokedex_CHGTheme {
                 val navController = rememberNavController()
-
                 val viewModel: PokemonDetailViewModel = viewModel()
                 val viewModel2: PokemonListViewModel = viewModel()
 
