@@ -40,12 +40,11 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         startDestination = "Splash"
                     ) {
-
                         composable("Lista") {
                             PokemonListScreen(viewModel, navController)
                         }
                         composable("Splash") {
-                            SplashScreen(navController) {}
+                            SplashScreen(navController, viewModel)
                         }
                         composable("PokedexView/{pokemonId}") { backStackEntry ->
                             val pokemonId = backStackEntry.arguments?.getString("pokemonId")
