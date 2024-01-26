@@ -23,6 +23,9 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
 import com.example.pokedex_chg.data.models.ReducedPokemonData
+import com.example.pokedex_chg.ui.components.listScreen.PokemonIdText
+import com.example.pokedex_chg.ui.components.listScreen.PokemonImage
+import com.example.pokedex_chg.ui.components.listScreen.PokemonNameText
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
@@ -57,10 +60,7 @@ fun PokemonRow(pokemon: ReducedPokemonData, onPokemonClick: (String) -> Unit) {
                     .padding(top = 8.dp, start = 8.dp),
                 horizontalArrangement = Arrangement.Start
             ) {
-                Text(
-                    text = "ID: ${pokemon.id}",
-                    style = MaterialTheme.typography.labelSmall
-                )
+                PokemonIdText(pokemonId = pokemon.id)
             }
             Row(
                 modifier = Modifier
@@ -69,18 +69,14 @@ fun PokemonRow(pokemon: ReducedPokemonData, onPokemonClick: (String) -> Unit) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(
-                        text = pokemon.name,
-                        style = MaterialTheme.typography.headlineMedium,
-                        modifier = Modifier.padding(bottom = 8.dp)
-                    )
-                }
-                AsyncImage(
-                    model = pokemon.photo,
+                PokemonNameText(
+                    pokemonName = pokemon.name,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+                PokemonImage(
+                    url = pokemon.photo,
                     contentDescription = "Imagen de ${pokemon.name}",
-                    modifier = Modifier.size(100.dp),
-                    contentScale = ContentScale.Crop
+                    modifier = Modifier.size(100.dp)
                 )
             }
         }
