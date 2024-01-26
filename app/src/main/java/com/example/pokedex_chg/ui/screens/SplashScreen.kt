@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.pokedex_chg.R
+import com.example.pokedex_chg.ui.components.splashScreen.AnimatedText
+import com.example.pokedex_chg.ui.components.splashScreen.LogoImage
 import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
 import kotlinx.coroutines.delay
 
@@ -77,28 +79,17 @@ fun SplashScreen(navController: NavController, viewModel: PokemonDetailViewModel
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Image(
+        LogoImage(
             painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Logo",
-            modifier = Modifier
-                .scale(scale.value)
-                .alpha(opacity.value)
+            scale = scale,
+            opacity = opacity
         )
-        Text(
+        AnimatedText(
             text = "Pokedex",
-            fontSize = 60.sp,
+            textColor = textColor,
             fontFamily = customFontFamily,
-            color = textColor.value,
-            style = androidx.compose.ui.text.TextStyle(
-                shadow = Shadow(
-                    color = Color.Black,
-                    offset = Offset(4f, 4f),
-                    blurRadius = 8f
-                )
-            ),
-            modifier = Modifier
-                .scale(scale.value)
-                .alpha(opacity.value)
+            scale = scale,
+            opacity = opacity
         )
     }
 }

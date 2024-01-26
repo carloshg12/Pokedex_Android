@@ -1,4 +1,4 @@
-package com.example.pokedex_chg.ui.components
+package com.example.pokedex_chg.ui.components.detailScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
