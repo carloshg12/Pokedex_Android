@@ -1,7 +1,7 @@
-package com.example.pokedex_chg.data.models
+package com.example.pokedex_chg.data.dto
 import com.google.gson.annotations.SerializedName
 
-data class Pokemon_Serializable(
+data class PokemonDTO(
     @SerializedName("id")
     val id: String,
 
