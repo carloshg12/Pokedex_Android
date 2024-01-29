@@ -9,13 +9,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pokedex_chg.data.repositories.PokemonAPIRepositoryImpl
 import com.example.pokedex_chg.domains.models.Pokemon
-import com.example.pokedex_chg.data.sources.remote.PokemonApi
 import com.example.pokedex_chg.ui.utils.PokemonColors
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class PokemonListViewModel @Inject constructor(private val pokemonParser: PokemonApi = PokemonApi()
+class PokemonListViewModel @Inject constructor(private val pokemonParser: PokemonAPIRepositoryImpl = PokemonAPIRepositoryImpl()
 ) : ViewModel() {
 
     private val _pokemon = MutableLiveData<Pokemon?>(null)

@@ -1,4 +1,4 @@
-package com.example.pokedex_chg.data.models
+package com.example.pokedex_chg.domains.models
 
 data class PokemonSpecies(
     val name: String,
