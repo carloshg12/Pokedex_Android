@@ -7,9 +7,10 @@ import com.example.pokedex_chg.domains.repositories.PokemonRepository
 import com.example.pokedex_chg.mappers.mapToPokemon
 import com.google.gson.Gson
 import org.json.simple.JSONObject
+import javax.inject.Inject
 
 
-class PokemonGson : PokemonRepository {
+class PokemonGson @Inject constructor(): PokemonRepository {
     override fun getPokemonByArchive(jsonObject: JSONObject): Pokemon {
         val jsonString = jsonObject.toString()
         val gson = Gson()

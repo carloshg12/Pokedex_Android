@@ -9,7 +9,8 @@ import com.example.pokedex_chg.data.repositories.PokemonAPIRepositoryImpl
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class PokemonDetailViewModel @Inject constructor(private val repository: PokemonAPIRepositoryImpl = PokemonAPIRepositoryImpl()) : ViewModel() {
+class PokemonDetailViewModel @Inject constructor(
+    private val repository: PokemonAPIRepositoryImpl = PokemonAPIRepositoryImpl()) : ViewModel() {
 
     private val _pokemons = MutableLiveData<List<ReducedPokemonData>>()
     val pokemons: LiveData<List<ReducedPokemonData>> = _pokemons

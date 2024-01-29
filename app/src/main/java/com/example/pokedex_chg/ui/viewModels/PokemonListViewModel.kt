@@ -15,7 +15,8 @@ import com.example.pokedex_chg.ui.utils.PokemonColors
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class PokemonListViewModel @Inject constructor(private val pokemonParser: PokemonAPIRepositoryImpl = PokemonAPIRepositoryImpl()
+class PokemonListViewModel @Inject constructor(
+    private val pokemonParser: PokemonAPIRepositoryImpl = PokemonAPIRepositoryImpl()
 ) : ViewModel() {
 
     private val _pokemon = MutableLiveData<Pokemon?>(null)
@@ -37,7 +38,17 @@ class PokemonListViewModel @Inject constructor(private val pokemonParser: Pokemo
         }
     }
 
-
+    fun getAbilityColor(ability: String): Color {
+        return try {
+            val enumColor = PokemonColors.valueOf(ability.uppercase())
+            if (primaryColor == Color.Gray) {
+                primaryColor = enumColor.color
+            }
+            enumColor.color
+        } catch (e: IllegalArgumentException) {
+            Color.Gray
+        }
+    }
 
     /*
     Funcion si se busca un pokemon por nombre
@@ -69,17 +80,5 @@ class PokemonListViewModel @Inject constructor(private val pokemonParser: Pokemo
             }
         }
     }*/
-
-    fun getAbilityColor(ability: String): Color {
-        return try {
-            val enumColor = PokemonColors.valueOf(ability.uppercase())
-            if (primaryColor == Color.Gray) {
-                primaryColor = enumColor.color
-            }
-            enumColor.color
-        } catch (e: IllegalArgumentException) {
-            Color.Gray
-        }
-    }
 
 }

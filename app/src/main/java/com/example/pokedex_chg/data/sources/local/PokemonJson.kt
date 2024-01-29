@@ -5,8 +5,9 @@ import com.example.pokedex_chg.domains.models.ReducedPokemonData
 import com.example.pokedex_chg.domains.repositories.PokemonRepository
 import com.example.pokedex_chg.mappers.PokemonJsonMapper
 import org.json.simple.JSONObject
+import javax.inject.Inject
 
-class PokemonJson(private val mapper: PokemonJsonMapper) : PokemonRepository {
+class PokemonJson @Inject constructor(private val mapper: PokemonJsonMapper) : PokemonRepository {
 
     override fun getPokemonByArchive(jsonObject: JSONObject): Pokemon {
         return mapper.mapToPokemon(jsonObject)
