@@ -7,8 +7,9 @@ import com.example.pokedex_chg.domains.repositories.PokemonRepository
 import com.example.pokedex_chg.mappers.mapToPokemon
 import org.json.simple.JSONObject
 import java.util.Locale
+import javax.inject.Inject
 
-class PokemonAPIRepositoryImpl : PokemonRepository {
+class PokemonAPIRepositoryImpl @Inject constructor(): PokemonRepository {
 
     private val apiService = RetrofitInstance.api
 
