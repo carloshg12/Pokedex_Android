@@ -9,15 +9,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
+import com.example.pokedex_chg.ui.viewModels.PokemonListViewModel
 import com.example.pokedex_chg.ui.screens.PokemonDetailScreen
 import com.example.pokedex_chg.ui.screens.PokemonListScreen
 import com.example.pokedex_chg.ui.screens.SplashScreen
-import com.example.pokedex_chg.ui.viewModels.PokemonListViewModel
+import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
 import com.example.pokedex_chg.ui.theme.Pokedex_CHGTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,8 +30,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             Pokedex_CHGTheme {
                 val navController = rememberNavController()
-                val viewModel: PokemonDetailViewModel = viewModel()
-                val viewModel2: PokemonListViewModel = viewModel()
+                val viewModel: PokemonListViewModel = hiltViewModel()
+                val viewModel2: PokemonDetailViewModel = hiltViewModel()
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),

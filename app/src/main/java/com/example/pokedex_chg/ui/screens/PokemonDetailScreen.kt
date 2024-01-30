@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.pokedex_chg.R
 import com.example.pokedex_chg.ui.components.*
 import com.example.pokedex_chg.ui.components.detailScreen.BaseStatsHeader
 import com.example.pokedex_chg.ui.components.detailScreen.NetworkImage
@@ -22,7 +23,8 @@ import com.example.pokedex_chg.ui.components.detailScreen.PokemonInfoRow
 import com.example.pokedex_chg.ui.components.detailScreen.PokemonNameRow
 import com.example.pokedex_chg.ui.components.detailScreen.StatisticBar
 import com.example.pokedex_chg.ui.components.detailScreen.TopBar
-import com.example.pokedex_chg.ui.viewModels.PokemonListViewModel
+import com.example.pokedex_chg.ui.components.listScreen.PokemonImage
+import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
 import com.example.pokedex_chg.ui.theme.*
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -30,7 +32,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PokemonDetailScreen(
-    pokedexViewModel: PokemonListViewModel,
+    pokedexViewModel: PokemonDetailViewModel,
     navController: NavController
 ) {
     val pokemon by pokedexViewModel.pokemon.observeAsState()
@@ -52,12 +54,11 @@ fun PokemonDetailScreen(
         ) {
             NetworkImage(
                 url = pokemon?.photo ?: "",
-                contentDescription = null,
+                contentDescription = "Imagen de ${pokemon?.name}",
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(225.dp)
-                    .background(color)
-                    .clip(RoundedCornerShape(0.dp, 0.dp, 35.dp, 35.dp))
+                    .background(color),
             )
 
             Spacer(modifier = Modifier.size(25.dp))

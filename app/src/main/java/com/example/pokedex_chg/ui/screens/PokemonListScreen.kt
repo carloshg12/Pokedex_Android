@@ -18,7 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
+import com.example.pokedex_chg.R
+import com.example.pokedex_chg.ui.viewModels.PokemonListViewModel
 import com.example.pokedex_chg.domains.models.ReducedPokemonData
 import com.example.pokedex_chg.ui.components.listScreen.PokemonIdText
 import com.example.pokedex_chg.ui.components.listScreen.PokemonImage
@@ -26,7 +27,7 @@ import com.example.pokedex_chg.ui.components.listScreen.PokemonNameText
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun PokemonListScreen(viewModel: PokemonDetailViewModel, navController: NavController) {
+fun PokemonListScreen(viewModel: PokemonListViewModel, navController: NavController) {
     val color = MaterialTheme.colorScheme.primary
     val systemUiController = rememberSystemUiController()
     systemUiController.setStatusBarColor(color)
@@ -71,7 +72,7 @@ fun PokemonRow(pokemon: ReducedPokemonData, onPokemonClick: (String) -> Unit) {
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
                 PokemonImage(
-                    url = pokemon.photo,
+                    url = if (pokemon.photo == "no_foto") R.drawable.pokeball else pokemon.photo ,
                     contentDescription = "Imagen de ${pokemon.name}",
                     modifier = Modifier.size(100.dp)
                 )

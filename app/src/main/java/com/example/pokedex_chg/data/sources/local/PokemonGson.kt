@@ -1,20 +1,28 @@
 package com.example.pokedex_chg.data.sources.local
 
+import android.app.Application
 import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.data.dto.PokemonDTO
+import com.example.pokedex_chg.domains.models.PokedexResponse
 import com.example.pokedex_chg.domains.models.ReducedPokemonData
 import com.example.pokedex_chg.domains.repositories.PokemonRepository
 import com.example.pokedex_chg.mappers.mapToPokemon
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import org.json.simple.JSONObject
+import java.io.InputStreamReader
 import javax.inject.Inject
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
 
+class PokemonGson @Inject constructor(val application: Application): PokemonRepository {
 
-class PokemonGson @Inject constructor(): PokemonRepository {
-    override fun getPokemonByArchive(jsonObject: JSONObject): Pokemon {
-        val jsonString = jsonObject.toString()
+    val context = application.applicationContext
+
+    override fun getPokemonByArchive(name: String): Pokemon {
+        val json = InputStreamReader(context.assets.open("$name.json"))
         val gson = Gson()
-        val gsonPokemon = gson.fromJson(jsonString, PokemonDTO::class.java)
+        val gsonPokemon = gson.fromJson(json, PokemonDTO::class.java)
 
         return mapToPokemon(gsonPokemon)
     }
@@ -28,6 +36,20 @@ class PokemonGson @Inject constructor(): PokemonRepository {
     }
 
     override suspend fun getAllPokemons(): List<ReducedPokemonData> {
-        TODO("Not yet implemented")
+        val json = InputStreamReader(context.assets.open("pokedex.json"))
+        val gson = Gson()
+
+        val responseType: Type = object : TypeToken<PokedexResponse>() {}.type
+        val response = gson.fromJson<PokedexResponse>(json, responseType)
+
+        return response.pokemon_entries.map { entry ->
+            ReducedPokemonData(
+                id = entry.entry_number.toString(),
+                name = entry.pokemon_species.name,
+                photo = "no_foto"
+            )
+        }
     }
+
+
 }

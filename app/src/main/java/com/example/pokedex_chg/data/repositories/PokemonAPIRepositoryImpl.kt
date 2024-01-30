@@ -26,6 +26,10 @@ class PokemonAPIRepositoryImpl @Inject constructor(): PokemonRepository {
         }
     }
 
+    override fun getPokemonByArchive(name: String): Pokemon {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun getPokemonByName(name: String): Pokemon {
         val pokemonDTO = apiService.getPokemonByName(name)
         return mapToPokemon(pokemonDTO)
@@ -35,9 +39,7 @@ class PokemonAPIRepositoryImpl @Inject constructor(): PokemonRepository {
         val pokemonDTO = apiService.getPokemonById(id.toString())
         return mapToPokemon(pokemonDTO)
     }
-    override fun getPokemonByArchive(jsonObject: JSONObject): Pokemon {
-        TODO("Not yet implemented")
-    }
+
 
     private fun getPokemonPhotoUrl(id: Int): String {
         return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"

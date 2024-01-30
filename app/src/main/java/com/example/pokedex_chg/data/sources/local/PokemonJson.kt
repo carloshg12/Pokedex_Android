@@ -8,10 +8,13 @@ import org.json.simple.JSONObject
 import javax.inject.Inject
 
 class PokemonJson @Inject constructor(private val mapper: PokemonJsonMapper) : PokemonRepository {
-
-    override fun getPokemonByArchive(jsonObject: JSONObject): Pokemon {
-        return mapper.mapToPokemon(jsonObject)
+    override fun getPokemonByArchive(name: String): Pokemon {
+        TODO("Not yet implemented")
     }
+
+    /*override fun getPokemonByArchive(jsonObject: JSONObject): Pokemon {
+        return mapper.mapToPokemon(jsonObject)
+    }*/
 
     override suspend fun getPokemonByName(name: String): Pokemon {
         TODO("Not yet implemented")
