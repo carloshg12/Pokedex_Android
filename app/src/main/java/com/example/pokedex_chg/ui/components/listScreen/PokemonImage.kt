@@ -6,7 +6,7 @@ import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
 
 @Composable
-fun PokemonImage(url: String, contentDescription: String, modifier: Modifier = Modifier) {
+fun PokemonImage(url: Comparable<*>, contentDescription: String, modifier: Modifier = Modifier) {
     AsyncImage(
         model = url,
         contentDescription = contentDescription,

@@ -10,21 +10,24 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
+import com.example.pokedex_chg.R
 
 @SuppressLint("RememberReturnType")
 @Composable
 fun NetworkImage(
     url: String,
     contentDescription: String?,
-    modifier: Modifier = Modifier
+    modifier: Modifier,
+    errorDrawable: Int = R.drawable.pokeball // Por defecto
 ) {
-    val painter: AsyncImagePainter = rememberAsyncImagePainter(
-        ImageRequest.Builder(LocalContext.current)
-            .data(data = url)
-            .apply { crossfade(true) }
-            .build()
-    )
+    val painter =
+        rememberAsyncImagePainter(
+            ImageRequest.Builder(LocalContext.current).data(data = url).apply(block = fun ImageRequest.Builder.() {
+                error(errorDrawable)
+            }).build()
+        )
 
     Image(
         painter = painter,
@@ -33,3 +36,4 @@ fun NetworkImage(
             .clip(RoundedCornerShape(0.dp, 0.dp, 35.dp, 35.dp))
     )
 }
+
