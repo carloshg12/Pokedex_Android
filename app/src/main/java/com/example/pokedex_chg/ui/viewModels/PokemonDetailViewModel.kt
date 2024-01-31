@@ -1,22 +1,21 @@
 package com.example.pokedex_chg.ui.viewModels
 
 import android.util.Log
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokedex_chg.data.repositories.PokemonAPIRepositoryImpl
 import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.domains.usecases.GetPokemonDetailUseCase
-import com.example.pokedex_chg.domains.usecases.GetPokemonListUseCase
 import com.example.pokedex_chg.ui.utils.PokemonColors
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class PokemonDetailViewModel @Inject constructor(
     private val pokemonParser: GetPokemonDetailUseCase

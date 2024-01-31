@@ -10,7 +10,6 @@ import dagger.hilt.android.components.ViewModelComponent
 @Module
 @InstallIn(ViewModelComponent::class)
 abstract class PokemonRepositoryModule {
-
     @Binds
     abstract fun bindRepository(
         pokemonFallbackRepositoryImpl: PokemonFallbackRepositoryImpl

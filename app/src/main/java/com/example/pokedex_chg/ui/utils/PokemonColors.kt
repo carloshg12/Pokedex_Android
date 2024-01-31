@@ -23,7 +23,6 @@ import com.example.pokedex_chg.ui.theme.unknown
 import com.example.pokedex_chg.ui.theme.water
 
 enum class PokemonColors (val color: Color){
-
     NORMAL(normal),
     FIGHTING(fighting),
     FLYING(flying),
@@ -45,6 +44,5 @@ enum class PokemonColors (val color: Color){
     UNKNOWN(unknown),
     LOADING(Color.Gray),
     SHADOW(shadow);
-
 }
 

@@ -24,7 +24,6 @@ import com.example.pokedex_chg.ui.components.splashScreen.LogoImage
 import com.example.pokedex_chg.ui.viewModels.PokemonListViewModel
 import kotlinx.coroutines.delay
 
-
 @Composable
 fun SplashScreen(navController: NavController, viewModel: PokemonListViewModel) {
     val pokemons = viewModel.pokemons.observeAsState()

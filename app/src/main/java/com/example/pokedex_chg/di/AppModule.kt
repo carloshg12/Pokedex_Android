@@ -13,7 +13,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
@@ -30,13 +29,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApiRepositoryImpl(): PokemonAPIRepositoryImpl {
-        return PokemonAPIRepositoryImpl()
+    fun provideApiRepositoryImpl(apiService: PokemonApiService): PokemonAPIRepositoryImpl {
+        return PokemonAPIRepositoryImpl(apiService)
     }
 
     @Provides
     @Singleton
-    fun provideJsonRepositoryImpl(application: Application): PokemonGson {
+    fun provideGsonRepositoryImpl(application: Application): PokemonGson {
         return PokemonGson(application)
     }
 
