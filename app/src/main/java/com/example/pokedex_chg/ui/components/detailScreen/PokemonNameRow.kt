@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import java.util.Locale
 
 @Composable
 fun PokemonNameRow(pokemonName: String?) {
@@ -23,7 +24,8 @@ fun PokemonNameRow(pokemonName: String?) {
             color = Color.White,
             fontWeight = FontWeight.Bold,
             fontSize = 35.sp,
-            text = pokemonName?.capitalize() ?: "Loading...",
+            text = pokemonName?.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
+                ?: "Loading...",
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentWidth(Alignment.CenterHorizontally),

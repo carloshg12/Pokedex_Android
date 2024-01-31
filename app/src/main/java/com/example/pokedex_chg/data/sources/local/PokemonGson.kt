@@ -1,19 +1,18 @@
 package com.example.pokedex_chg.data.sources.local
 
 import android.app.Application
-import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.data.dto.PokemonDTO
 import com.example.pokedex_chg.domains.models.PokedexResponse
+import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.domains.models.ReducedPokemonData
 import com.example.pokedex_chg.domains.repositories.PokemonRepository
+import com.example.pokedex_chg.mappers.mapPokemonEntryToReducedData
 import com.example.pokedex_chg.mappers.mapToPokemon
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import org.json.simple.JSONObject
-import java.io.InputStreamReader
-import javax.inject.Inject
 import com.google.gson.reflect.TypeToken
+import java.io.InputStreamReader
 import java.lang.reflect.Type
+import javax.inject.Inject
 
 class PokemonGson @Inject constructor(val application: Application): PokemonRepository {
 
@@ -43,13 +42,8 @@ class PokemonGson @Inject constructor(val application: Application): PokemonRepo
         val response = gson.fromJson<PokedexResponse>(json, responseType)
 
         return response.pokemon_entries.map { entry ->
-            ReducedPokemonData(
-                id = entry.entry_number.toString(),
-                name = entry.pokemon_species.name,
-                photo = "no_foto"
-            )
+            mapPokemonEntryToReducedData(entry)
         }
     }
-
 
 }

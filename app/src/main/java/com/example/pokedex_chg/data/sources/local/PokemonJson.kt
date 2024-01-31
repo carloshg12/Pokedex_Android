@@ -4,7 +4,6 @@ import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.domains.models.ReducedPokemonData
 import com.example.pokedex_chg.domains.repositories.PokemonRepository
 import com.example.pokedex_chg.mappers.PokemonJsonMapper
-import org.json.simple.JSONObject
 import javax.inject.Inject
 
 class PokemonJson @Inject constructor(private val mapper: PokemonJsonMapper) : PokemonRepository {

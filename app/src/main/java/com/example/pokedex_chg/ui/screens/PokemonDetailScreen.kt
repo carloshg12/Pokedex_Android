@@ -3,7 +3,6 @@ package com.example.pokedex_chg.ui.screens
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -11,10 +10,8 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.pokedex_chg.R
 import com.example.pokedex_chg.ui.components.*
 import com.example.pokedex_chg.ui.components.detailScreen.BaseStatsHeader
 import com.example.pokedex_chg.ui.components.detailScreen.NetworkImage
@@ -23,9 +20,8 @@ import com.example.pokedex_chg.ui.components.detailScreen.PokemonInfoRow
 import com.example.pokedex_chg.ui.components.detailScreen.PokemonNameRow
 import com.example.pokedex_chg.ui.components.detailScreen.StatisticBar
 import com.example.pokedex_chg.ui.components.detailScreen.TopBar
-import com.example.pokedex_chg.ui.components.listScreen.PokemonImage
-import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
 import com.example.pokedex_chg.ui.theme.*
+import com.example.pokedex_chg.ui.viewModels.PokemonDetailViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

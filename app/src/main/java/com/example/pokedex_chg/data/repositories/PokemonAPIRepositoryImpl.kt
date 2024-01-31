@@ -1,17 +1,16 @@
 package com.example.pokedex_chg.data.repositories
 
-import com.example.pokedex_chg.data.sources.remote.RetrofitInstance
+import com.example.pokedex_chg.data.sources.remote.PokemonApiService
 import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.domains.models.ReducedPokemonData
 import com.example.pokedex_chg.domains.repositories.PokemonRepository
 import com.example.pokedex_chg.mappers.mapToPokemon
-import org.json.simple.JSONObject
 import java.util.Locale
 import javax.inject.Inject
 
-class PokemonAPIRepositoryImpl @Inject constructor(): PokemonRepository {
-
-    private val apiService = RetrofitInstance.api
+class PokemonAPIRepositoryImpl @Inject constructor(
+    private val apiService: PokemonApiService
+) : PokemonRepository {
 
     override suspend fun getAllPokemons(): List<ReducedPokemonData> {
         val response = apiService.getAllPokemons()

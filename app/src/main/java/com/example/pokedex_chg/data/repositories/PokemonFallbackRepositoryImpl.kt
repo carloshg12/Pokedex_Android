@@ -1,11 +1,9 @@
 package com.example.pokedex_chg.data.repositories
 
-import android.util.Log
 import com.example.pokedex_chg.data.sources.local.PokemonGson
 import com.example.pokedex_chg.domains.models.Pokemon
 import com.example.pokedex_chg.domains.models.ReducedPokemonData
 import com.example.pokedex_chg.domains.repositories.PokemonRepository
-import org.json.simple.JSONObject
 import javax.inject.Inject
 
 class PokemonFallbackRepositoryImpl @Inject constructor(
